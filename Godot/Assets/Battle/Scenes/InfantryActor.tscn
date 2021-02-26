@@ -1,0 +1,44 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://src/Battle/InfantryBody.cs" type="Script" id=1]
+
+[sub_resource type="BoxShape" id=1]
+
+[sub_resource type="CubeMesh" id=2]
+
+[sub_resource type="BoxShape" id=3]
+
+[sub_resource type="CubeMesh" id=4]
+
+[sub_resource type="BoxShape" id=5]
+
+[sub_resource type="CubeMesh" id=6]
+
+[node name="Actor" type="KinematicBody"]
+script = ExtResource( 1 )
+
+[node name="TorsoCShape" type="CollisionShape" parent="."]
+transform = Transform( 0.75, 0, 0, 0, 1, 0, 0, 0, 0.75, 0, 1.02343, 0 )
+shape = SubResource( 1 )
+
+[node name="TorsoMesh" type="CSGMesh" parent="TorsoCShape"]
+mesh = SubResource( 2 )
+
+[node name="HeadKBody" type="KinematicBody" parent="TorsoCShape"]
+transform = Transform( 0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 1.45859, 0 )
+collision_layer = 2
+collision_mask = 2147483650
+
+[node name="HeadCShape" type="CollisionShape" parent="TorsoCShape/HeadKBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.222795, 0 )
+shape = SubResource( 3 )
+
+[node name="HeadMesh" type="CSGMesh" parent="TorsoCShape/HeadKBody/HeadCShape"]
+mesh = SubResource( 4 )
+
+[node name="LegsCShape" type="CollisionShape" parent="."]
+transform = Transform( 0.75, 0, 0, 0, 1, 0, 0, 0, 0.75, 0, -1, 0 )
+shape = SubResource( 5 )
+
+[node name="LegsMesh" type="CSGMesh" parent="LegsCShape"]
+mesh = SubResource( 6 )
